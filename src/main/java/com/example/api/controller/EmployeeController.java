@@ -4,6 +4,7 @@ import com.example.api.entity.Employee;
 import com.example.api.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -29,7 +30,9 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id){
         return ResponseEntity.ok(employeeService.findById(id));
     }
+
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
 //        employee.setId(employeeService.getAllEmployees().size() + 1);
         return ResponseEntity.created(getLocation(employee.getId())).body(employeeService.addEmployee(employee));

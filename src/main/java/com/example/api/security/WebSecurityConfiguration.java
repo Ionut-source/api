@@ -23,10 +23,12 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.authenticationProvider(authenticationProvider);
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers(POST, "api/accounts/**").permitAll();
-        http.authorizeRequests()
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers(POST, "api/accounts/**")
+                .permitAll()
+                .antMatchers( "/**")
+                .authenticated()
                 .anyRequest()
                 .hasAnyRole("USER", "ADMIN")
                 .and()

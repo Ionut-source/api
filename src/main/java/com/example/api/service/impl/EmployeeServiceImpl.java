@@ -1,7 +1,7 @@
 package com.example.api.service.impl;
 
 import com.example.api.entity.Employee;
-import com.example.api.repository.JpaEmployeeRepository;
+import com.example.api.repository.EmployeeRepository;
 import com.example.api.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,33 +12,33 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Qualifier("mySqlEmployeeService")
-public class JpaEmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private final JpaEmployeeRepository jpaEmployeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Override
     public Employee addEmployee(Employee employee) {
-        return jpaEmployeeRepository.save(employee);
+        return employeeRepository.save(employee);
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-        return jpaEmployeeRepository.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee findById(Integer id) {
-        return jpaEmployeeRepository.findById(id).get();
+        return employeeRepository.findById(id).get();
     }
 
     @Override
     public Employee updateEmployee(Employee employee) {
-        return jpaEmployeeRepository.save(employee);
+        return employeeRepository.save(employee);
     }
 
     @Override
     public Boolean deleteById(Integer id) {
-        jpaEmployeeRepository.deleteById(id);
+        employeeRepository.deleteById(id);
         return Boolean.TRUE;
     }
 }

@@ -25,7 +25,6 @@ public class AccountAuthenticationProvider extends AbstractUserDetailsAuthentica
         if(encoder.matches((String) authentication.getCredentials(), userDetails.getPassword())){
             throw new BadCredentialsException("Invalid credentials");
         }
-
     }
 
     @Override

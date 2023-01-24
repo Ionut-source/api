@@ -37,9 +37,8 @@ public class Account {
     @ManyToMany(fetch = EAGER, cascade = ALL)
     @JoinTable(
             name = "AccountRole",
-            joinColumns = @JoinColumn(name ="accountId", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name ="roleId", referencedColumnName = "id")
-    )
+            joinColumns = @JoinColumn(name = "accountId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
     private Set<Role> roles;
 }
 
