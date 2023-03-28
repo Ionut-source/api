@@ -18,7 +18,8 @@ public class AccountAuthenticationProvider extends AbstractUserDetailsAuthentica
     private final PasswordEncoder encoder;
 
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+    protected void additionalAuthenticationChecks(
+            UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         if(authentication.getCredentials() == null || userDetails.getPassword() == null) {
             throw new BadCredentialsException("Credentials may not be null!");
         }
@@ -28,7 +29,8 @@ public class AccountAuthenticationProvider extends AbstractUserDetailsAuthentica
     }
 
     @Override
-    protected UserDetails retrieveUser(String userName, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+    protected UserDetails retrieveUser(
+            String userName, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         return userDetailsService.loadUserByUsername(userName);
     }
 }
