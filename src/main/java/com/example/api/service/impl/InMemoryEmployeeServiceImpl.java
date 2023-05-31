@@ -36,9 +36,9 @@ public class InMemoryEmployeeServiceImpl implements EmployeeService {
         inMemoryEmployeeRepository.updateEmployee(employee);
         return employee;
     }
-
+    
     @Override
     public Boolean deleteById(Integer id) {
-        return deleteById(id);
+        return inMemoryEmployeeRepository.deleteById(id);
     }
 }
